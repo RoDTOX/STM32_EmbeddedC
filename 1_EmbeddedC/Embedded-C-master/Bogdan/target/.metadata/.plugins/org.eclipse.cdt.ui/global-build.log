@@ -1,4 +1,4 @@
-11:13:53 **** Build of configuration Debug for project 001_HelloWorld ****
+15:24:40 **** Build of configuration Debug for project 001_HelloWorld ****
 make -j12 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
@@ -10,8 +10,15 @@ Finished building target: 001_HelloWorld.elf
 arm-none-eabi-size  001_HelloWorld.elf 
 arm-none-eabi-objdump -h -S 001_HelloWorld.elf  > "001_HelloWorld.list"
    text	   data	    bss	    dec	    hex	filename
-   3388	     92	   1900	   5380	   1504	001_HelloWorld.elf
+   5244	     92	   1900	   7236	   1c44	001_HelloWorld.elf
 Finished building: default.size.stdout
  
 Finished building: 001_HelloWorld.list
+ 
+15:24:46 **** Incremental Build of configuration Debug for project 001_HelloWorld ****
+make -j12 all 
+arm-none-eabi-size  001_HelloWorld.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5244	     92	   1900	   7236	   1c44	001_HelloWorld.elf
+Finished building: default.size.stdout
  

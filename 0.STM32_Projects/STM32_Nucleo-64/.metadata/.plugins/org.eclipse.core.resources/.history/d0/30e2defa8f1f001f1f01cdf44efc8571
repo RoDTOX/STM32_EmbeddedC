@@ -1,0 +1,82 @@
+#include "pn532.h"
+#include <stdio.h>
+
+extern UART_HandleTypeDef huart2; // Adjust this if you're using a different UART
+
+void PN532_Wakeup()
+{
+    // Wake up the PN532
+    uint8_t wakeup_cmd[] = {0x55};
+    if (HAL_UART_Transmit(&huart2, wakeup_cmd, 1, HAL_MAX_DELAY) != HAL_OK)
+    {
+        printf("Failed to wake up PN532\n");
+        Error_Handler();
+    }
+    else
+    {
+        printf("PN532 wakeup command sent\n");
+    }
+
+    HAL_Delay(1000); // Delay to allow PN532 to wake up
+}
+
+HAL_StatusTypeDef PN532_SendCommand(uint8_t* cmd, uint8_t cmd_len)
+{
+    return HAL_UART_Transmit(&huart2, cmd, cmd_len, HAL_MAX_DELAY);
+}
+
+HAL_StatusTypeDef PN532_ReadResponse(uint8_t* buffer, uint8_t buffer_len)
+{
+    HAL_StatusTypeDef status;
+
+    // Wait for data to be received
+    status = HAL_UART_Receive(&huart2, buffer, buffer_len, HAL_MAX_DELAY);
+
+    if (status != HAL_OK)
+    {
+        printf("Failed to receive data, status: %d\n", status);
+        return status;
+    }
+
+    // Print received data for debugging
+    printf("Received response: ");
+    for (int i = 0; i < buffer_len; i++)
+    {
+        printf("%02X ", buffer[i]);
+    }
+    printf("\n");
+
+    return HAL_OK;
+}
+
+void PN532_GetFirmwareVersion(void)
+{
+    uint8_t get_firmware_cmd[] = {
+        0x00, 0x00, 0xFF, // Preamble and start code
+        0x02, 0xFE, // Length and LCS
+        0xD4, 0x02, // TFI and command code
+        0x2A, // DCS
+        0x00 // Postamble
+    };
+
+    if (PN532_SendCommand(get_firmware_cmd, sizeof(get_firmware_cmd)) != HAL_OK)
+    {
+        printf("Failed to send firmware version command\n");
+        Error_Handler();
+    }
+
+    uint8_t response[20]; // Adjust size based on expected response length
+    if (PN532_ReadResponse(response, sizeof(response)) != HAL_OK)
+    {
+        printf("Failed to read firmware version response\n");
+        Error_Handler();
+    }
+
+    // Process the response to get firmware version
+    printf("Firmware version response: ");
+    for (int i = 0; i < sizeof(response); i++)
+    {
+        printf("%02X ", response[i]);
+    }
+    printf("\n");
+}

@@ -27,5 +27,12 @@ int main(void)
 {
     /* Loop forever */
 	printf("Hello world!\n");
+	printf("Size of short = %d\n", sizeof(short));
+	printf("Size of int = %d\n", sizeof(int));
+	printf("Size of long = %d\n", sizeof(long));
+	printf("Size of long long = %d\n", sizeof(long long));
+	printf("Size of double = %d\n", sizeof(double));
+
+
 	for(;;);
 }
