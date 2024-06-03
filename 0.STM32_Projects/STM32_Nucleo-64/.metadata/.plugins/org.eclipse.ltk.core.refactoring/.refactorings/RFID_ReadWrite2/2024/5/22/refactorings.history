@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;RFID_ReadWrite2/Core/Src/pn532.c&apos; to &apos;pn532_sbc.c&apos;" description="Rename resource &apos;pn532.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/pn532.c" name="pn532_sbc.c" stamp="1717195643645" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;RFID_ReadWrite2/Core/Inc/pn532.h&apos; to &apos;pn532_sbc.h&apos;" description="Rename resource &apos;pn532.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/pn532.h" name="pn532_sbc.h" stamp="1717195655681" updateReferences="true"/>
-</session>
