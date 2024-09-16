@@ -1,0 +1,16 @@
+/*
+ * main.h
+ *
+ *  Created on: Sep 16, 2024
+ *      Author: bogdsece
+ */
+
+#ifndef MAIN_H_
+#define MAIN_H_
+
+typedef struct
+{
+	uint32_t GPIO_AEN:2;
+}RCC_AHB1ENR_t;
+
+#endif /* MAIN_H_ */
