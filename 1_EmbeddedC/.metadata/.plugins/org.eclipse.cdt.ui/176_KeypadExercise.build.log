@@ -1,0 +1,10 @@
+15:58:16 **** Incremental Build of configuration Debug for project 176_KeypadExercise ****
+make -j12 all 
+arm-none-eabi-size  176_KeypadExercise.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6272	    100	   2076	   8448	   2100	176_KeypadExercise.elf
+Finished building: default.size.stdout
+ 
+
+15:58:17 Build Finished. 0 errors, 0 warnings. (took 312ms)
+
