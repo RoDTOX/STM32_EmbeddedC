@@ -114,8 +114,8 @@ int main(void)
     //Enable the cycle counting for Segger SysView tool
   	DWT_CTRL |= 1;
 
-  	//SEGGER_SYSVIEW_Conf();
-  	//SEGGER_SYSVIEW_Start();
+  	SEGGER_SYSVIEW_Conf();
+  	SEGGER_SYSVIEW_Start();
 
 	Ret = xTaskCreate(task1_handler, "task1", 200, "HelloWorldFromTask1", 2, &task1_handle);
 
@@ -339,7 +339,7 @@ static void task1_handler(void* parameters)
 	while(1)
 	{
 		printf("%s\n", (char *)parameters);
-		taskYIELD();
+		//taskYIELD();
 	}
 }
 
@@ -348,7 +348,7 @@ static void task2_handler(void* parameters)
 	while(1)
 	{
 		printf("%s\n", (char *)parameters);
-		taskYIELD();
+		//taskYIELD();
 	}
 }
 
