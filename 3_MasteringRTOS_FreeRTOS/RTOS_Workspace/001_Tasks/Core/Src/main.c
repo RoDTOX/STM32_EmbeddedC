@@ -336,19 +336,32 @@ static void MX_GPIO_Init(void)
 
 static void task1_handler(void* parameters)
 {
+	char msg[100];
 	while(1)
 	{
-		printf("%s\n", (char *)parameters);
-		//taskYIELD();
+		/*
+		 *  after segger patching of freeRTOS, the printf will no longer print on ITM, because _write funciton is declared (_weak_) in the syscall of the mcu and is overtaken by the SEGGER _write function
+		 *  */
+
+		//printf("%s\n", (char *)parameters);
+		snprintf(msg, 100, "%s\n", (char *)parameters);
+		SEGGER_SYSVIEW_PrintfTarget(msg);	//printf for segger logger
+		taskYIELD();
 	}
 }
 
 static void task2_handler(void* parameters)
 {
+	char msg[100];
 	while(1)
 	{
-		printf("%s\n", (char *)parameters);
-		//taskYIELD();
+		/*
+		 *  after segger patching of freeRTOS, the printf will no longer print on ITM, because _write funciton is declared (_weak_) in the syscall of the mcu and is overtaken by the SEGGER _write function
+		 *  */
+		//printf("%s\n", (char *)parameters);
+		snprintf(msg, 100, "%s\n", (char *)parameters);
+		SEGGER_SYSVIEW_PrintfTarget(msg);	//printf for segger logger -
+		taskYIELD();
 	}
 }
 
